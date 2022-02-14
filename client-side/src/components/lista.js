@@ -23,7 +23,7 @@ function Lista(){
             <div className="flex flex-col w-3/4 mx-auto border-2 border-[#d2d2d2]">  
                 <div className="flex flex-col p-2 w-full ml-auto justify-end items-end border-b-2 mb-5">
                     <label>Filtros</label>        
-                    <select className="p-3 my-1 border-2 border-double border-[#2E377B] rounded">
+                    <select className="p-1 my-1 border-2 border-double border-[#2E377B] rounded">
                         <option selected>Todos</option>
                         <option value="Produto novo">Produto Novo</option>
                         <option value="Produto Usado">Produto Usado</option>
@@ -33,17 +33,42 @@ function Lista(){
                 </div>  
                 {ListAnuncios.map(ListAnuncio =>{
                     return(
-                        <div className="flex h-200px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
-                            <img className="w-1/4 border-r-4 border-[#2E377B] rounded-lg" src="https://www.wikihow.com/images/7/75/Make-a-Picture-Link-in-HTML-Step-8.jpg" ></img>
-                            <div className="w-3/4">
+                        <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
+                            <img className="border-r-4 border-[#2E377B] rounded-lg" 
+                            src="https://www.wikihow.com/images/7/75/Make-a-Picture-Link-in-HTML-Step-8.jpg" 
+                            style={{width: "27%"}}></img>
+                            <div style={{width: "73%"}}>
                                 <div className="w-full p-3 flex place-content-between">
-                                    <h1>{ListAnuncio.titulo}</h1>
-                                    <h2>{ListAnuncio.categoria}</h2>
+                                    <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
+                                    <div className="flex">
+                                        <h2  className='font-bold'>
+                                            Categoria: 
+                                       </h2>
+                                       <h5>
+                                            {ListAnuncio.categoria}
+                                       </h5>
+                                    </div>
                                 </div>
-                                <p style={{height: "50%"}}>{ListAnuncio.descricao}</p>
+                                <div className="break-all p-1" style={{height: "50%"}}>
+                                    {ListAnuncio.descricao}
+                                </div>
                                 <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
-                                    <p>Data inicial: {ListAnuncio.data_inicial}</p>
-                                    <p>Data final: {ListAnuncio.data_final}</p>
+                                    <div className="flex">
+                                        <h2  className='font-bold'  >
+                                            Data inicial: 
+                                       </h2>
+                                       <h5>
+                                            {ListAnuncio.data_inicial}
+                                       </h5>
+                                    </div>
+                                    <div className="flex">
+                                        <h2  className='font-bold'>
+                                            Data final: 
+                                       </h2>
+                                       <h5>
+                                            {ListAnuncio.data_final}
+                                       </h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
