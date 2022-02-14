@@ -33,8 +33,9 @@ app.post("/anuncio", async(req,res) =>{
 
 app.post("/file", upload.single('img'), async(req,res) =>{
     try {        
-        console.log(req.file)
-        await pool.query('INSERT INTO FILES(FILENAME, PATH) VALUES($1, $2)',[req.file.filename, `files//${req.file.filename}`])
+        console.log('File: ', req.file);
+        console.log('Body: ', req.body);
+        // await pool.query('INSERT INTO FILES(FILENAME, PATH) VALUES($1, $2)',[req.file.filename, `files//${req.file.filename}`])
     } catch (error) {
         console.log(error.message);
     }
@@ -42,8 +43,8 @@ app.post("/file", upload.single('img'), async(req,res) =>{
 
 app.get("/anuncios", async(req,res) =>{
     try {
-      const newName = await pool.query("SELECT * FROM ANUNCIO;")
-      res.json(newName.rows)    
+      const allAnuncios = await pool.query("SELECT * FROM ANUNCIO;")
+      res.json(allAnuncios.rows)    
     } catch (error) {
         console.log("Erro: " + error.message);
     }
