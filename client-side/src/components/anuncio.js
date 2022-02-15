@@ -20,6 +20,7 @@ function Anuncio(){
       };
     
     const newAnuncio = new Anuncio();
+    
     const[file, setFile] = useState();
     const preview = document.getElementById('iimg');
   
@@ -105,7 +106,11 @@ function Anuncio(){
                 <div>
                     <label className="font-bold">Data final</label>
                     <input type="date" className="w-2/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
-                    onChange={e => newAnuncio.state.dataFinal = e.target.value}></input>
+                    onChange={e => {
+                        newAnuncio.state.dataFinal = e.target.value;
+                        console.log(newAnuncio);
+                        
+                    }}></input>
                 </div>
                 <div>     
                     <label className="font-bold">Descrição</label>

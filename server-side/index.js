@@ -33,8 +33,6 @@ app.post("/anuncio", async(req,res) =>{
 
 app.post("/file", upload.single('img'), async(req,res) =>{
     try {        
-        console.log('File: ', req.file);
-        console.log('Body: ', req.body);
         // await pool.query('INSERT INTO FILES(FILENAME, PATH) VALUES($1, $2)',[req.file.filename, `files//${req.file.filename}`])
     } catch (error) {
         console.log(error.message);

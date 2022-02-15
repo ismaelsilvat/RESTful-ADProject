@@ -13,7 +13,15 @@ function Lista(){
       
       useEffect(() => {
         getAnuncios()
-      }, []);
+      }, [])
+
+      ListAnuncios.map(ListAnuncio =>{
+        var string = ListAnuncio.data_inicial;
+        var string2 = ListAnuncio.data_final;
+
+        ListAnuncio.data_inicial = string.substring(0,10)
+        ListAnuncio.data_final = string.substring(0,10)
+      })    
 
     return(
         <body>
@@ -55,18 +63,18 @@ function Lista(){
                                 <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
                                     <div className="flex">
                                         <h2  className='font-bold'  >
-                                            Data inicial: 
+                                            Data inicial:  
                                        </h2>
                                        <h5>
-                                            {ListAnuncio.data_inicial}
+                                             {ListAnuncio.data_inicial}
                                        </h5>
                                     </div>
                                     <div className="flex">
                                         <h2  className='font-bold'>
-                                            Data final: 
+                                            Data final:      
                                        </h2>
-                                       <h5>
-                                            {ListAnuncio.data_final}
+                                       <h5> 
+                                           {ListAnuncio.data_final}
                                        </h5>
                                     </div>
                                 </div>
