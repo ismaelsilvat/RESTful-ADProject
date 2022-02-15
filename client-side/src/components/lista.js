@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../App.css';
 
 function Lista(){
@@ -10,21 +10,25 @@ function Lista(){
         const data = await response.json()
         setAnuncios(data)
       };
-      
-      useEffect(() => {
+    
+    useEffect(() => {
         getAnuncios()
-      }, [])
+    }, [])
 
-      ListAnuncios.map(ListAnuncio =>{
+
+    ListAnuncios.map(ListAnuncio =>{
         var string = ListAnuncio.data_inicial;
         var string2 = ListAnuncio.data_final;
 
         ListAnuncio.data_inicial = string.substring(0,10)
-        ListAnuncio.data_final = string.substring(0,10)
-      })    
+        ListAnuncio.data_final = string2.substring(0,10)
+        return(
+            console.log('Transformado!')
+        )
+    })    
 
     return(
-        <body>
+        <div>
             <div>
                 <h1 className="text-center text-4xl font-bold m-10 mb-16">Anúncios ativos</h1>
             </div>
@@ -39,13 +43,13 @@ function Lista(){
                         <option value="Emprego">Emprego</option>
                     </select>
                 </div>  
-                {ListAnuncios.map(ListAnuncio =>{
+                {ListAnuncios.map((ListAnuncio, i) =>{
                     return(
                         <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
                             <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                            src="https://www.wikihow.com/images/7/75/Make-a-Picture-Link-in-HTML-Step-8.jpg" 
+                            src={ListAnuncio.src} 
                             style={{width: "27%"}}></img>
-                            <div style={{width: "73%"}}>
+                            <div style={{width: "73%", padding: 5}}>
                                 <div className="w-full p-3 flex place-content-between">
                                     <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
                                     <div className="flex">
@@ -57,16 +61,16 @@ function Lista(){
                                        </h5>
                                     </div>
                                 </div>
-                                <div className="break-all p-1" style={{height: "50%"}}>
+                                <div className="break-all p-3" style={{height: "50%"}}>
                                     {ListAnuncio.descricao}
                                 </div>
                                 <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
                                     <div className="flex">
-                                        <h2  className='font-bold'  >
+                                        <h2  className='font-bold'>
                                             Data inicial:  
                                        </h2>
                                        <h5>
-                                             {ListAnuncio.data_inicial}
+                                            {ListAnuncio.data_inicial}
                                        </h5>
                                     </div>
                                     <div className="flex">
@@ -83,7 +87,7 @@ function Lista(){
                     )
                 })}
             </div>
-        </body>
+        </div>
     )
 }
 

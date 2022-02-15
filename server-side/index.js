@@ -32,8 +32,10 @@ app.post("/anuncio", async(req,res) =>{
 });
 
 app.post("/file", upload.single('img'), async(req,res) =>{
-    try {        
-        // await pool.query('INSERT INTO FILES(FILENAME, PATH) VALUES($1, $2)',[req.file.filename, `files//${req.file.filename}`])
+    try {       
+        console.log(req.file); 
+        await pool.query('INSERT INTO FILE(SRC) VALUES($1)',[req.file.path])
+        await pool.query('INSERT INTO ANUNCIO(SRC) SELECT SRC FROM FILE WHERE IDFILE = IDANUNCIO')
     } catch (error) {
         console.log(error.message);
     }
@@ -50,7 +52,7 @@ app.get("/anuncios", async(req,res) =>{
 
 app.get("/files", async(req,res) =>{
     try {
-      const newFile = await pool.query("SELECT * FROM FILES;")
+      const newFile = await pool.query("SELECT * FROM FILE;")
       res.json(newFile.rows)
     } catch (error) {
         console.log("Erro: " + error.message);

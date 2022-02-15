@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Anuncio from './components/anuncio';
 import Lista from './components/lista';
 
