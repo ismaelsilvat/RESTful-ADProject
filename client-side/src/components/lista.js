@@ -15,7 +15,6 @@ function Lista(){
         getAnuncios()
     }, [])
 
-
     ListAnuncios.map(ListAnuncio =>{
         var string = ListAnuncio.data_inicial;
         var string2 = ListAnuncio.data_final;
@@ -26,6 +25,14 @@ function Lista(){
             console.log('Transformado!')
         )
     })    
+    // let imgs = []
+    // ListAnuncios.map(ListAnuncio =>{
+    //     import img from ListAnuncio.src
+    //     imgs.push(img)
+    // });
+    // console.log(imgs);
+    console.log(Process.env.public_url);
+    
 
     return(
         <div>
@@ -44,10 +51,22 @@ function Lista(){
                     </select>
                 </div>  
                 {ListAnuncios.map((ListAnuncio, i) =>{
+                    // console.log(require('../files/1644969916610-310228.png'));
+                    // let novoSrc = require(ListAnuncio.s)
+                    // console.log(novoSrc);
+
+                    async function teste(pImagem){
+                        const imgteste = await require(pImagem)                        
+                        console.log('Oiiii', imgteste);
+                    }
+                        
+                        teste(ListAnuncio.src)
+                    
+                    
                     return(
                         <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
                             <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                            src={ListAnuncio.src} 
+                            src={require(`${ListAnuncio.src}`)}
                             style={{width: "27%"}}></img>
                             <div style={{width: "73%", padding: 5}}>
                                 <div className="w-full p-3 flex place-content-between">

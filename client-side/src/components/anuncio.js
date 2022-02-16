@@ -20,43 +20,55 @@ function Anuncio(){
       };
     
     const newAnuncio = new Anuncio();
-    var file = null;
-    const preview = document.getElementById('iimg');
-  
+    const[file, setFile] = useState();
+    const[maxID, setMaxId] = useState();
+    var preview = document.getElementById('iimg');
+    
     if(file != null){
         const reader = new FileReader();
+        const fileInfo = file;
         reader.onload = function(){
-        preview.src = reader.result
+            preview.src = reader.result
         }
-        reader.readAsDataURL(file)
-        preview.style = "display: block; width: 175px; height: 148px; object-fit: fill"
+        reader.readAsDataURL(fileInfo)
+        preview.style = "display: block; width: 175px; object-fit: fill"
     }
-
-    async function imagem(){
+    
+    async function imagem(maxId){
         try {
-        const data = new FormData();
-        data.append('img', file)
-        console.log('Data: ',data);
-        console.log('Com useState: ', file);
-        
-        await fetch("http://localhost:5000/file",{
-            method: "POST",  
-            body: data
-        })
+            const data = new FormData();
+            data.append('img', file);
+            data.append('maxId', maxId[0].idanuncio)
+            console.log(maxId[0].idanuncio);
+            
+            await fetch("http://localhost:5000/file",{
+                method: "POST",  
+                body: data
+            })
         } catch (error) {
-        console.log(error.message);
+            console.log(error.message);
         }
     }
-
+    
     async function armazenar(){
         try {
-        const body = newAnuncio.state;
-        await fetch("http://localhost:5000/anuncio",{
-            method: "POST",
-            headers: { "Content-Type":"application/json" },
-            body: JSON.stringify(body)
-        })
-        imagem()
+            newAnuncio.state.titulo = document.getElementById('i1').value;
+            newAnuncio.state.Categoria = document.getElementById('i2').value;
+            newAnuncio.state.Telefone = document.getElementById('i3').value;
+            newAnuncio.state.Email = document.getElementById('i4').value;
+            newAnuncio.state.dataInicial = document.getElementById('i5').value;
+            newAnuncio.state.dataFinal = document.getElementById('i6').value;
+            newAnuncio.state.descricao = document.getElementById('i7').value;
+            const body = newAnuncio.state;
+            let id = await fetch("http://localhost:5000/anuncio",{
+                method: "POST",
+                headers: { "Content-Type":"application/json"},
+                body: JSON.stringify(body)
+            })
+
+            let maxId = await id.json()
+            imagem(maxId)
+            
         } catch (error) {
         console.log(error.message);
         }
@@ -137,19 +149,9 @@ function Anuncio(){
                 <div className="flex min-h-212px">
                     <div className="w-3/4">
                     <label className="font-bold">Imagem</label>
-                    <input type="file" className="w-full block my-1 rounded" placeholder="Escolher imagem"
-                    onChange={e => {
-                        file = e.target.files[0];
-                        newAnuncio.state.titulo = document.getElementById('i1').value;
-                        newAnuncio.state.Categoria = document.getElementById('i2').value;
-                        newAnuncio.state.Telefone = document.getElementById('i3').value;
-                        newAnuncio.state.Email = document.getElementById('i4').value;
-                        newAnuncio.state.dataInicial = document.getElementById('i5').value;
-                        newAnuncio.state.dataFinal = document.getElementById('i6').value;
-                        newAnuncio.state.descricao = document.getElementById('i7').value;
-                        console.log(newAnuncio);
-                    }
-                    }></input>
+                    <input type="file" className="w-full block my-1 rounded" placeholder="Escolher imagem" onChange={e => {
+                        setFile(e.target.files[0])
+                    }}></input>
                     <img id="iimg" style={{display: "none"}} src={preview} alt='img'></img>
                     </div>
                     <div className="w-1/4 h-full p-4 flex">

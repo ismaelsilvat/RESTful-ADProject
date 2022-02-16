@@ -6,7 +6,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, 'files/')
+        cb(null, '../client-side/src/files/')
     },
     filename: (req,file,cb) => {
         cb(null, Date.now()+'-'+file.originalname)
@@ -20,22 +20,21 @@ app.use(express.json());
 
 app.post("/anuncio", async(req,res) =>{
     try {
-        const infos = req.body
+        const infos = req.body;
         console.log(infos);
-        const newName = await pool.query('INSERT INTO ANUNCIO(TITULO,DESCRICAO,DATA_INICIAL,DATA_FINAL,CATEGORIA,EMAIL,TELEFONE) VALUES($1,$2,$3,$4,$5,$6,$7)',
+        const newName = await pool.query('INSERT INTO ANUNCIO(TITULO,DESCRICAO,DATA_INICIAL,DATA_FINAL,CATEGORIA,EMAIL,TELEFONE) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING IDANUNCIO;',
         [infos.titulo,infos.descricao,infos.dataInicial,infos.dataFinal,
         infos.Categoria,infos.Email,infos.Telefone]);
-        res.json(newName.rows)
+        res.json(newName.rows);
     } catch (error) {
         console.log("Erro: " + error.message);
     }
 });
 
 app.post("/file", upload.single('img'), async(req,res) =>{
-    try {       
-        console.log(req.file); 
-        await pool.query('INSERT INTO FILE(SRC) VALUES($1)',[req.file.path])
-        await pool.query('INSERT INTO ANUNCIO(SRC) SELECT SRC FROM FILE WHERE IDFILE = IDANUNCIO')
+    try {               
+        console.log(req.body);
+        await pool.query('UPDATE ANUNCIO SET SRC = $1 WHERE IDANUNCIO = $2',[`../files/${req.file.filename}` , req.body.maxId])
     } catch (error) {
         console.log(error.message);
     }
@@ -56,6 +55,16 @@ app.get("/files", async(req,res) =>{
       res.json(newFile.rows)
     } catch (error) {
         console.log("Erro: " + error.message);
+    }
+});
+
+app.get("/maxId", async(req,res) =>{
+    try {
+        const maxId = await pool.query("SELECT MAX(IDANUNCIO) FROM ANUNCIO GROUP BY IDANUNCIO;");
+        res.json(maxId);
+    } catch (error) {
+        console.log(error.message);
+        
     }
 });
 
