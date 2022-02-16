@@ -31,9 +31,7 @@ function Lista(){
     //     imgs.push(img)
     // });
     // console.log(imgs);
-    console.log(Process.env.public_url);
     
-
     return(
         <div>
             <div>
@@ -55,18 +53,12 @@ function Lista(){
                     // let novoSrc = require(ListAnuncio.s)
                     // console.log(novoSrc);
 
-                    async function teste(pImagem){
-                        const imgteste = await require(pImagem)                        
-                        console.log('Oiiii', imgteste);
-                    }
-                        
-                        teste(ListAnuncio.src)
-                    
-                    
+                    let imgSrc = ListAnuncio.src
+                    console.log(imgSrc);
                     return(
                         <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
                             <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                            src={require(`${ListAnuncio.src}`)}
+                            src={require('../files/1644972462451-1634401309915.png')}
                             style={{width: "27%"}}></img>
                             <div style={{width: "73%", padding: 5}}>
                                 <div className="w-full p-3 flex place-content-between">
