@@ -34,7 +34,9 @@ app.post("/anuncio", async(req,res) =>{
 app.post("/file", upload.single('img'), async(req,res) =>{
     try {               
         console.log(req.body);
-        await pool.query('UPDATE ANUNCIO SET SRC = $1 WHERE IDANUNCIO = $2',[`../files/${req.file.filename}` , req.body.maxId])
+        console.log(req.file);
+        await pool.query('UPDATE ANUNCIO SET SRC = $1 WHERE IDANUNCIO = $2',[req.file.filename, req.body.maxId])
+        
     } catch (error) {
         console.log(error.message);
     }

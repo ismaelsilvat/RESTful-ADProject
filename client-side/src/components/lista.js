@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
+// import img from "../files/1645033330096-310228.png"
 
 function Lista(){
 
@@ -24,13 +25,8 @@ function Lista(){
         return(
             console.log('Transformado!')
         )
-    })    
-    // let imgs = []
-    // ListAnuncios.map(ListAnuncio =>{
-    //     import img from ListAnuncio.src
-    //     imgs.push(img)
-    // });
-    // console.log(imgs);
+    })   
+
     
     return(
         <div>
@@ -40,7 +36,7 @@ function Lista(){
             <div className="flex flex-col w-3/4 mx-auto border-2 border-[#d2d2d2]">  
                 <div className="flex flex-col p-2 w-full ml-auto justify-end items-end border-b-2 mb-5">
                     <label>Filtros</label>        
-                    <select className="p-1 my-1 border-2 border-double border-[#2E377B] rounded">
+                    <select className="p-1 my-1 border-2 border-double border-[#2E377B] rounded" id="filtro">
                         <option selected>Todos</option>
                         <option value="Produto novo">Produto Novo</option>
                         <option value="Produto Usado">Produto Usado</option>
@@ -48,17 +44,11 @@ function Lista(){
                         <option value="Emprego">Emprego</option>
                     </select>
                 </div>  
-                {ListAnuncios.map((ListAnuncio, i) =>{
-                    // console.log(require('../files/1644969916610-310228.png'));
-                    // let novoSrc = require(ListAnuncio.s)
-                    // console.log(novoSrc);
-
-                    let imgSrc = ListAnuncio.src
-                    console.log(imgSrc);
+                {ListAnuncios.map((ListAnuncio, i) =>{   
                     return(
                         <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
                             <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                            src={require('../files/1644972462451-1634401309915.png')}
+                            src={require(`../files/${ListAnuncio.src}`)}
                             style={{width: "27%"}}></img>
                             <div style={{width: "73%", padding: 5}}>
                                 <div className="w-full p-3 flex place-content-between">
