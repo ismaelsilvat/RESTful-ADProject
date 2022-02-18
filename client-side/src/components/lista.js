@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
-// import img from "../files/1645033330096-310228.png"
+import Search from './search'
 
 function Lista(){
 
-    const [ListAnuncios, setAnuncios] = useState([]);
+    const[ListAnuncios, setAnuncios] = useState([]);
+    const[Filtro, setFiltro] = useState("Todos");
 
     async function getAnuncios(){
         const response = await fetch('http://localhost:5000/anuncios')
@@ -27,17 +28,19 @@ function Lista(){
         )
     })   
 
-    
     return(
         <div>
+            <div className="hidden">
+                <Search ></Search>  
+            </div>
             <div>
                 <h1 className="text-center text-4xl font-bold m-10 mb-16">Anúncios ativos</h1>
             </div>
             <div className="flex flex-col w-3/4 mx-auto border-2 border-[#d2d2d2]">  
                 <div className="flex flex-col p-2 w-full ml-auto justify-end items-end border-b-2 mb-5">
                     <label>Filtros</label>        
-                    <select className="p-1 my-1 border-2 border-double border-[#2E377B] rounded" id="filtro">
-                        <option selected>Todos</option>
+                    <select className="p-1 my-1 border-2 border-double border-[#2E377B] rounded" onChange={e => setFiltro(e.target.value)}>
+                        <option selected value="Todos">Todos</option>
                         <option value="Produto novo">Produto Novo</option>
                         <option value="Produto Usado">Produto Usado</option>
                         <option value="Serviço">Serviço</option>
@@ -45,47 +48,64 @@ function Lista(){
                     </select>
                 </div>  
                 {ListAnuncios.map((ListAnuncio, i) =>{   
-                    return(
-                        <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
-                            <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                            src={require(`../files/${ListAnuncio.src}`)}
-                            style={{width: "27%"}}></img>
-                            <div style={{width: "73%", padding: 5}}>
-                                <div className="w-full p-3 flex place-content-between">
-                                    <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
-                                    <div className="flex">
-                                        <h2  className='font-bold'>
-                                            Categoria: 
-                                       </h2>
-                                       <h5>
-                                            {ListAnuncio.categoria}
-                                       </h5>
+                    function Teste(){
+                        return(
+                            <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
+                                <img className="border-r-4 border-[#2E377B] rounded-lg" 
+                                src={require(`../files/${ListAnuncio.src}`)}
+                                style={{width: "27%"}}></img>
+                                <div style={{width: "73%", padding: 5}}>
+                                    <div className="w-full p-3 flex place-content-between">
+                                        <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
+                                        <div className="flex">
+                                            <h2  className='font-bold'>
+                                                Categoria: 
+                                            </h2>
+                                            <h5>
+                                                {ListAnuncio.categoria}
+                                            </h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="break-all p-3" style={{height: "50%"}}>
-                                    {ListAnuncio.descricao}
-                                </div>
-                                <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
-                                    <div className="flex">
-                                        <h2  className='font-bold'>
-                                            Data inicial:  
-                                       </h2>
-                                       <h5>
-                                            {ListAnuncio.data_inicial}
-                                       </h5>
+                                    <div className="break-all p-3" style={{height: "50%"}}>
+                                        {ListAnuncio.descricao}
                                     </div>
-                                    <div className="flex">
-                                        <h2  className='font-bold'>
-                                            Data final:      
-                                       </h2>
-                                       <h5> 
-                                           {ListAnuncio.data_final}
-                                       </h5>
+                                    <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
+                                        <div className="flex">
+                                            <h2  className='font-bold'>
+                                                Data inicial:  
+                                            </h2>
+                                            <h5>
+                                                {ListAnuncio.data_inicial}
+                                            </h5>
+                                        </div>
+                                        <div className="flex">
+                                            <h2  className='font-bold'>
+                                                Data final:      
+                                            </h2>
+                                            <h5> 
+                                                {ListAnuncio.data_final}
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )
+                        )
+                    }
+                    if(Filtro === "Todos"){
+                        return(
+                            Teste()
+                        )
+                    }
+                    else if(Filtro === ListAnuncio.categoria){
+                        return(
+                            Teste()
+                        )
+                    }
+                    else{
+                        return(
+                            <h1 className="text-center font-bold text-[#adadad]">Não há anúncios ativos com esse filtro no momento.</h1>
+                        )
+                    }
                 })}
             </div>
         </div>

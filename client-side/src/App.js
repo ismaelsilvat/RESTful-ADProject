@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Anuncio from './components/anuncio';
 import Lista from './components/lista';
+import Seacrh from './components/search'
 
 function App(){
 
@@ -10,10 +11,7 @@ function App(){
   return (
     <body style={{backgroundColor: "#f6f6f6",minHeight: "100vh"}}>
       <header className="flex place-content-between bg-[#2968C8] px-11 items-center h-80px w-full shadow-xl">
-        <div className="w-2/12 relative">
-          <input className="w-full p-2 rounded-full shadow-lg border-0 focus:outline-[#2968C8]" placeholder="Buscar"></input>
-          <button className="absolute" style={{top: "50%", transform: "translateY(-50%)",left: "90%"}}>🔎</button>
-        </div>
+        <Seacrh palavachave={"teste"}></Seacrh>
         <h1 className="font-serif text-2xl text-white font-bold subpixel-antialiased">NunciaKi!</h1>
         <div className="w-2/12 flex justify-center">
           {buttonShow ?(
