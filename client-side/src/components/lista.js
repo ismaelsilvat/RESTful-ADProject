@@ -8,7 +8,7 @@ function Lista(){
     const[value, setValue] = useState()
 
     async function getAnuncios(){
-        const response = await fetch('https://nunciaki.herokuapp.com/anuncios')
+        const response = await fetch("https://nunciaki.herokuapp.com/anuncios")
         const data = await response.json()
         setAnuncios(data)
       };
