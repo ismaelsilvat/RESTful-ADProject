@@ -59,9 +59,9 @@ function Lista(){
                     function Structure(){
                         return(
                             <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2]" key={ListAnuncio.idanuncio}>
-                                <img className="border-r-4 border-[#2E377B] rounded-lg" 
+                                {/* <img className="border-r-4 border-[#2E377B] rounded-lg" 
                                 src={require(`../files/${ListAnuncio.src}`)}
-                                style={{width: "27%"}}></img>
+                                style={{width: "27%"}}></img> */}
                                 <div style={{width: "73%", padding: 5}}>
                                     <div className="w-full p-3 flex place-content-between">
                                         <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
