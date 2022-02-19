@@ -8,7 +8,7 @@
       "npm": "8.1.2"
     },
     "scripts": {
-      "start": "node index.js"
+      "start": "node index"
     },
     "author": "ismaelsilvat",
     "license": "ISC",
