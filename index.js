@@ -14,11 +14,17 @@ const storage = multer.diskStorage({
         cb(null, Date.now()+'-'+file.originalname)
     }
 })
+
 const upload = multer({storage})
 
-app.set('view engine', 'ejs')
 app.use(cors());
 app.use(express.json());
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "client-side/")))
+  }
+
+
 app.get("/")
 
 app.post("/anuncio", async(req,res) =>{
