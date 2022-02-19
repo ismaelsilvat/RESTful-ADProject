@@ -19,6 +19,7 @@ const upload = multer({storage})
 
 app.use(cors());
 app.use(express.json());
+app.use('/files', express.static(__dirname + '/files'));
 
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "client-side/build")))
