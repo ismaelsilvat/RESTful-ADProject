@@ -41,7 +41,7 @@ function Anuncio(){
             data.append('maxId', maxId[0].idanuncio)
             console.log(maxId[0].idanuncio);
             
-            await fetch("http://localhost:5000/file",{
+            await fetch("https://nunciaki.herokuapp.com/file",{
                 method: "POST",  
                 body: data
             })
@@ -60,7 +60,7 @@ function Anuncio(){
             newAnuncio.state.dataFinal = document.getElementById('i6').value;
             newAnuncio.state.descricao = document.getElementById('i7').value;
             const body = newAnuncio.state;
-            let id = await fetch("http://localhost:5000/anuncio",{
+            let id = await fetch("https://nunciaki.herokuapp.com/anuncio",{
                 method: "POST",
                 headers: { "Content-Type":"application/json"},
                 body: JSON.stringify(body)
