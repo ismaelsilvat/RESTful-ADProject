@@ -1,17 +1,16 @@
 {
     "name": "server-side",
-    "private": true,
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "engines": {
-        "node": "16.13.2",
-        "npm": "8.1.2"
+      "node": "16.13.2",
+      "npm": "8.1.2"
     },
     "scripts": {
-        "start": "node index.js"
-      },
-    "author": "ismael-back",
+      "start": "node index.js"
+    },
+    "author": "ismaelsilvat",
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
@@ -19,8 +18,5 @@
         "express": "^4.17.1",
         "multer": "^1.4.4",
         "pg": "^8.7.1"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.15"
     }
-}
+  }
