@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
-const multer = require('multer')
-const path = require('path')
+const multer = require('multer');
+const path = require('path');
+const port = process.env.PORT || 5000;
 
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
@@ -72,6 +73,6 @@ app.get("/maxId", async(req,res) =>{
     }
 });
 
-app.listen(5000, () =>{
-    console.log(`Conected at localhost:${5000}`);
+app.listen(port, () =>{
+    console.log(`Conected at localhost:${port}`);
 });

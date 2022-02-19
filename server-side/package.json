@@ -5,8 +5,8 @@
     "description": "",
     "main": "index.js",
     "engines": {
-        "node": "16.2.0",
-        "npm": "7.13.0"
+        "node": "16.13.2",
+        "npm": "8.1.2"
     },
     "author": "ismael-back",
     "license": "ISC",
