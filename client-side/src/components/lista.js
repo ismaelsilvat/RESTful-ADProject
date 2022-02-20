@@ -130,7 +130,7 @@ function Lista(){
                             if(contador === ListAnuncios.length){return(<h1 className="text-center text-[#adadad] font-bold">Não há anúncios ativos com esse filtro no momento.</h1>);}
                         }
                     }
-                })};
+                })}
             </div>
         </div>
     );

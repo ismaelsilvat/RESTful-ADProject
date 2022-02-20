@@ -6,7 +6,6 @@ module.exports = {
       '80px': '80px',
       '150px': '150px',
       '220px': '220px',
-      '250px': '250px',
       '300px': '300px',
       'auto': 'auto !important'
     },
@@ -21,9 +20,6 @@ module.exports = {
       'lg': {'max':'992px'},
       'md': {'max':'768px'},
       'sm': {'max':'425px'}
-    },
-    flex: {
-      '50%': '0 0 50%'
     }
   },
   plugins: [],
