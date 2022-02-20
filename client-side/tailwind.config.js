@@ -6,6 +6,7 @@ module.exports = {
       '80px': '80px',
       '150px': '150px',
       '220px': '220px',
+      '250px': '250px',
       '300px': '300px',
     },
     bg:{

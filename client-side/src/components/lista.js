@@ -38,12 +38,12 @@ function Lista(){
                 <h1 className="text-center text-4xl font-bold m-10 mb-16 sm:m-6 sm:text-3xl">Anúncios ativos</h1>
             </div>
             <div className="flex flex-col w-3/4 mx-auto border-2 border-[#d2d2d2] lg:w-11/12">  
-                <div className="flex p-2 w-full ml-auto items-center border-b-2 mb-5">
-                    <div className="w-3/4 flex justify-end items-center">
-                        <input className="w-3/4 p-3 rounded-full shadow-lg border-0 focus:outline-[#2968C8] text-center" 
+                <div className="flex p-2 w-full ml-auto items-center border-b-2 mb-5 sm:flex-col">
+                    <div className="w-3/4 flex justify-end items-center sm:w-full">
+                        <input className="w-3/4 p-3 rounded-full shadow-lg border-0 focus:outline-[#2968C8] text-center sm:w-full sm:text-left" 
                         placeholder="Buscar" id="search" onChange={e => setValue(e.target.value)}></input>
                     </div>
-                    <div className="w-1/4 flex flex-col items-end">
+                    <div className="w-1/4 flex flex-col items-end sm:w-full sm:mt-2">
                         <label>Filtros</label>        
                         <select className="w-1/2 p-1 my-1 border-2 border-double border-[#2E377B] rounded" onChange={e => setFiltro(e.target.value)}>
                             <option selected value="Todos">Todos</option>
@@ -57,13 +57,14 @@ function Lista(){
                 {ListAnuncios.map((ListAnuncio, i) =>{   
                     function Structure(){
                         return(
-                            <div className="flex w-3/4 h-212px rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12 md:flex-col md:w-3/4 sm:w-11/12" key={ListAnuncio.idanuncio}>
-                                <img className="border-r-4 border-[#2E377B] rounded-lg w-2/5 md:w-full md:border-r-0 md:border-b-4" 
-                                src={`https://nunciaki.herokuapp.com/files/${ListAnuncio.src}`}></img>
-                                <div className="w-full p-2">
-                                    <div className="w-full p-3 flex place-content-between sm:p-0 ">
+                            <div className="flex w-3/4 h-250px rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12 md:flex-col md:w-3/4 sm:w-11/12" key={ListAnuncio.idanuncio}>
+                                <div className="border-r-4 border-[#2E377B] rounded-lg w-2/5 md:w-full md:border-r-0 md:border-b-4 flex justify-center items-center">
+                                    <img className="max-w-full max-h-full object-fill" src={`https://nunciaki.herokuapp.com/files/${ListAnuncio.src}`}></img>
+                                </div>
+                                <div className="w-full p-2 flex flex-col">
+                                    <div className="w-full p-3 flex place-content-between sm:p-0" style={{"height": "25%"}}>
                                         <div className="flex w-full flex-wrap">
-                                            <h1 className="font-bold text-lg w-1/2 sm:w-full sm:text-base sm:mb-2">{ListAnuncio.titulo}</h1>
+                                            <h1 className="font-bold text-lg w-1/2 sm:w-full sm:text-base sm:mb-5">{ListAnuncio.titulo}</h1>
                                             <div className="flex w-1/2 sm:w-full justify-end sm:justify-start">
                                                 <h2 className="sm:text-sm pt-0.5">Categoria: 
                                                 </h2>
@@ -71,16 +72,16 @@ function Lista(){
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="break-all p-3 sm:p-0 sm:mb-3">
-                                        <h2 className="sm:text-sm pt-0.5">Descrição</h2>
-                                        <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.descricao}</h5>
+                                    <div className="break-all p-3 sm:p-0 sm:my-5" style={{"height": "50%"}}>
+                                        <h2 className="sm:text-sm pt-0.5 h-1/4">Descrição</h2>
+                                        <h5 className="font-bold sm:text-base">{ListAnuncio.descricao}</h5>
                                     </div>
-                                    <div className="flex flex-wrap px-2 place-content-between items-end" style={{height: "25%"}}>
-                                        <div className="flex sm:w-full">
+                                    <div className="flex flex-wrap px-2 items-end sm:p-0" style={{"height": "25%"}}>
+                                        <div className="flex w-1/2 sm:w-full">
                                             <h2  className="sm:text-base">Data inicial:</h2>
                                             <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_inicial}</h5>
                                         </div>
-                                        <div className="flex sm:w-full">
+                                        <div className="flex w-1/2 sm:w-full">
                                             <h2  className='sm:text-base'>Data final:</h2>
                                             <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_final}</h5>
                                         </div>
