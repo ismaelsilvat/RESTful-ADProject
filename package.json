@@ -1,23 +1,22 @@
 {
-    "name": "server-side",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "engines": {
-      "node": "16.13.2",
-      "npm": "8.1.2"
-    },
-    "scripts": {
-      "start": "node index.js",
-      "heroku-postbuild": "cd client-side && npm install && npm run build"
-    },
-    "author": "ismaelsilvat",
-    "license": "ISC",
-    "dependencies": {
-        "cors": "^2.8.5",
-        "dotenv": "^11.0.0",
-        "express": "^4.17.1",
-        "multer": "^1.4.4",
-        "pg": "^8.7.1"
-    }
+  "name": "server-side",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.1.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client-side && npm install && npm run build"
+  },
+  "author": "ismaelsilvat",
+  "license": "ISC",
+  "dependencies": {
+      "cors": "^2.8.5",
+      "dotenv": "^11.0.0",
+      "express": "^4.17.1",
+      "multer": "^1.4.4",
+      "pg": "^8.7.1"
   }
+}

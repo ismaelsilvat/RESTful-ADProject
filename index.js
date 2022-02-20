@@ -8,24 +8,24 @@ const port = process.env.PORT || 5000;
 
 const storage = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, 'files/')
+        cb(null, 'files/');
     },
     filename: (req,file,cb) => {
-        cb(null, Date.now()+'-'+file.originalname)
+        cb(null, Date.now()+'-'+file.originalname);
     }
-})
+});
 
-const upload = multer({storage})
+const upload = multer({storage});
 
 app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(__dirname + '/files'));
 
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, "client-side/build")))
-}
+    app.use(express.static(path.join(__dirname, "client-side/build")));
+};
 
-app.get("/")
+app.get("/");
 
 app.post("/anuncio", async(req,res) =>{
     try {
@@ -44,8 +44,7 @@ app.post("/file", upload.single('img'), async(req,res) =>{
     try {               
         console.log(req.body);
         console.log(req.file);
-        await pool.query('UPDATE ANUNCIO SET SRC = $1 WHERE IDANUNCIO = $2',[req.file.filename, req.body.maxId])
-        
+        await pool.query('UPDATE ANUNCIO SET SRC = $1 WHERE IDANUNCIO = $2',[req.file.filename, req.body.maxId]);
     } catch (error) {
         console.log(error.message);
     }
@@ -53,8 +52,8 @@ app.post("/file", upload.single('img'), async(req,res) =>{
 
 app.get("/anuncios", async(req,res) =>{
     try {
-      const allAnuncios = await pool.query("SELECT * FROM ANUNCIO;")
-      res.json(allAnuncios.rows)    
+      const allAnuncios = await pool.query("SELECT * FROM ANUNCIO;");
+      res.json(allAnuncios.rows);
     } catch (error) {
         console.log("Erro: " + error.message);
     }
@@ -66,7 +65,6 @@ app.get("/maxId", async(req,res) =>{
         res.json(maxId);
     } catch (error) {
         console.log(error.message);
-        
     }
 });
 
