@@ -60,15 +60,6 @@ app.get("/anuncios", async(req,res) =>{
     }
 });
 
-app.get("/files", async(req,res) =>{
-    try {
-      const newFile = await pool.query("SELECT * FROM FILE;")
-      res.json(newFile.rows)
-    } catch (error) {
-        console.log("Erro: " + error.message);
-    }
-});
-
 app.get("/maxId", async(req,res) =>{
     try {
         const maxId = await pool.query("SELECT MAX(IDANUNCIO) FROM ANUNCIO GROUP BY IDANUNCIO;");

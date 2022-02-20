@@ -1,3 +1,4 @@
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -12,7 +13,15 @@ module.exports = {
     },
     minHeight :{
       '212px': '212px',
+    },
+    screens: {
+      'big': '2000px',
+      'lg': {'max':'992px'},
+      'sm': {'max':'425px'},
       
+    },
+    flex: {
+      '50%': '0 0 50%'
     }
   },
   plugins: [],

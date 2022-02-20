@@ -17,12 +17,12 @@ function Anuncio(){
             Telefone: null
           })
         };     
-      };
+    };
     
     const newAnuncio = new Anuncio();
     const[file, setFile] = useState();
     const[maxID, setMaxId] = useState();
-    var preview = document.getElementById('iimg');
+    var preview = document.getElementById('img');
     
     if(file != null){
         const reader = new FileReader();
@@ -39,8 +39,6 @@ function Anuncio(){
             const data = new FormData();
             data.append('img', file);
             data.append('maxId', maxId[0].idanuncio)
-            console.log(maxId[0].idanuncio);
-            
             await fetch("https://nunciaki.herokuapp.com/file",{
                 method: "POST",  
                 body: data
@@ -59,16 +57,15 @@ function Anuncio(){
             newAnuncio.state.dataInicial = document.getElementById('i5').value;
             newAnuncio.state.dataFinal = document.getElementById('i6').value;
             newAnuncio.state.descricao = document.getElementById('i7').value;
+
             const body = newAnuncio.state;
             let id = await fetch("https://nunciaki.herokuapp.com/anuncio",{
                 method: "POST",
                 headers: { "Content-Type":"application/json"},
                 body: JSON.stringify(body)
             })
-
             let maxId = await id.json()
             imagem(maxId)
-            
         } catch (error) {
         console.log(error.message);
         }
@@ -81,13 +78,13 @@ function Anuncio(){
     return(
         <div>
             <div>
-                <h1 className="text-center text-4xl font-bold m-10 mb-16">Criar Anúncio</h1>
+                <h1 className="text-center text-4xl font-bold m-10 mb-16 sm:mb-8 sm:text-3xl">Criar Anúncio</h1>
             </div>
-            <div className="w-11/12 m-auto p-5 bg-white shadow-md shadow-[#2968C8] px-7 flex justify-center border-2 rounded-lg border-[#d2d2d2]">  
-                <div className="w-1/2 flex flex-col place-content-between space-x pb-24">
-                    <div>
+            <div className="w-11/12 m-auto p-5 bg-white shadow-md shadow-[#2968C8] px-7 flex justify-center border-2 rounded-lg border-[#d2d2d2] lg:flex-col lg:px-5 big:w-3/4">  
+                <div className="w-1/2 flex flex-col space-x pb-24 lg:pb-0 lg:flex-wrap lg:flex-row lg:w-full lg:place-content-around">
+                    <div className="mb-2 lg:w-3/4 sm:w-full">
                         <label className="font-bold">Título</label>
-                        <input type="text" className="w-3/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded text-sm text-slate-500" 
+                        <input type="text" className="w-3/4 lg:w-full block p-4 my-1 border-2 border-double border-[#2E377B] rounded text-sm text-slate-500" 
                         placeholder="ex: Vende-se celular usado" onChange={e =>{
                             if(isNumber(e.target.value) === true ){
                                 document.getElementById('1').innerHTML = "Preencha os inputs com letras e números."
@@ -99,9 +96,9 @@ function Anuncio(){
                         </input>
                         <li className="text-[red] list-none" id="1"></li>
                     </div>
-                    <div>
+                    <div className="mb-2 lg:w-2/5 sm:w-full">
                         <label className="font-bold">Categoria</label>
-                        <select className="w-2/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded" placeholder="Categorias" id="i2">
+                        <select className="w-2/4 lg:w-full block p-4 my-1 border-2 border-double border-[#2E377B] rounded" placeholder="Categorias" id="i2">
                             <option selected>Escolher categoria</option>
                             <option value="Produto novo">Produto Novo</option>
                             <option value="Produto Usado">Produto Usado</option>
@@ -109,9 +106,9 @@ function Anuncio(){
                             <option value="Emprego">Emprego</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="mb-2 lg:w-2/5 sm:w-full">
                         <label className="font-bold">Telefone</label>
-                        <input type="tel" placeholder="ex: 55048991891499" className="w-2/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
+                        <input type="tel" placeholder="ex: 55048991891499" className="w-2/4 lg:w-full block p-4 my-1 border-2 border-double border-[#2E377B] rounded"
                         onChange={e => {
                             if(isNumber(e.target.value) === false ){
                                 document.getElementById('2').innerHTML = "Preencha apenas com números."
@@ -124,40 +121,40 @@ function Anuncio(){
                         </input>
                         <li className="text-[red] list-none" id="2"></li>
                     </div>
-                    <div>
+                    <div className="mb-2 lg:w-3/4 sm:w-full">
                         <label className="font-bold">Email para contato</label>
-                        <input type="email" className="w-3/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
+                        <input type="email" className="w-3/4 lg:w-full block p-4 my-1 border-2 border-double border-[#2E377B] rounded"
                         id="i4"></input>
                     </div>
                 </div>
-                <div className="w-1/2 flex flex-col place-content-between">
-                <div>
-                    <label className="font-bold">Data inicial</label>
-                    <input type="date" className="w-2/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
-                    id="i5"></input>
-                </div>
-                <div>
-                    <label className="font-bold">Data final</label>
-                    <input type="date" className="w-2/4 block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
-                    id="i6"></input>
-                </div>
-                <div>     
-                    <label className="font-bold">Descrição</label>
-                    <textarea type="text" className="w-3/4 block w-full h-150px p-3 my-1 border-2 border-double border-[#2E377B] rounded"
-                    style={{resize: "none"}} id="i7"></textarea>
-                </div>
-                <div className="flex min-h-212px">
-                    <div className="w-3/4">
-                    <label className="font-bold">Imagem</label>
-                    <input type="file" className="w-full block my-1 rounded" placeholder="Escolher imagem" onChange={e => {
-                        setFile(e.target.files[0])
-                    }}></input>
-                    <img id="iimg" style={{display: "none"}} src={preview} alt='img'></img>
+                <div className="w-1/2 flex flex-col place-content-between lg:flex-wrap lg:flex-row lg:w-full lg:place-content-around">
+                    <div className="mb-2 lg:w-2/5 sm:w-full">
+                        <label className="font-bold">Data inicial</label>
+                        <input type="date" className="w-2/4 lg:w-full block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
+                        id="i5"></input>
                     </div>
-                    <div className="w-1/4 h-full p-4 flex">
-                    <button type="button" className="w-full mt-auto p-3 rounded-lg font-bold bg-[#2968C8] text-white" onClick={armazenar}>Anunciar</button>
+                    <div className="mb-2 lg:w-2/5 sm:w-full">
+                        <label className="font-bold">Data final</label>
+                        <input type="date" className="w-2/4 lg:w-full block p-3 my-1 border-2 border-double border-[#2E377B] rounded"
+                        id="i6"></input>
                     </div>
-                </div>
+                    <div className="mb-2 w-2/5 lg:w-3/4 sm:w-full">     
+                        <label className="font-bold">Descrição</label>
+                        <textarea type="text" className="w-3/4 lg:w-full block w-full h-150px p-3 my-1 border-2 border-double border-[#2E377B] rounded"
+                        style={{resize: "none"}} id="i7"></textarea>
+                    </div>
+                    <div className="flex min-h-212px lg:flex-col lg:w-3/4 sm:w-full">
+                        <div className="w-3/4 lg:w-full">
+                            <label className="font-bold">Imagem</label>
+                            <input type="file" className="w-full block my-1 rounded" placeholder="Escolher imagem" onChange={e => {
+                                setFile(e.target.files[0])
+                            }}></input>
+                            <img id="img" style={{display: "none"}} src={preview} alt='img'></img>
+                        </div>
+                        <div className="w-full h-full p-4 flex justify-center">
+                            <button type="button" className="w-full lg:w-3/4 mt-auto p-3 rounded-lg font-bold bg-[#2968C8] text-white" onClick={armazenar}>Anunciar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
