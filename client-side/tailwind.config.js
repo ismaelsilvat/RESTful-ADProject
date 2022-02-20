@@ -17,8 +17,8 @@ module.exports = {
     screens: {
       'big': '2000px',
       'lg': {'max':'992px'},
-      'sm': {'max':'425px'},
-      
+      'md': {'max':'768px'},
+      'sm': {'max':'425px'}
     },
     flex: {
       '50%': '0 0 50%'

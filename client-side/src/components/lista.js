@@ -57,31 +57,32 @@ function Lista(){
                 {ListAnuncios.map((ListAnuncio, i) =>{   
                     function Structure(){
                         return(
-                            <div className="flex h-220px w-3/4 rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12" key={ListAnuncio.idanuncio}>
-                                <img className="border-r-4 border-[#2E377B] rounded-lg" 
-                                src={`https://nunciaki.herokuapp.com/files/${ListAnuncio.src}`}
-                                style={{width: "27%"}}></img>
-                                <div style={{width: "73%", padding: 5}}>
-                                    <div className="w-full p-3 flex place-content-between">
-                                        <h1 className="font-bold text-lg">{ListAnuncio.titulo}</h1>
-                                        <div className="flex">
-                                            <h2  className='font-bold'>Categoria: </h2>
-                                            <h5 className="ml-1">
-                                                {ListAnuncio.categoria}
-                                            </h5>
+                            <div className="flex w-3/4 h-212px rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12 md:flex-col md:w-3/4 sm:w-11/12" key={ListAnuncio.idanuncio}>
+                                <img className="border-r-4 border-[#2E377B] rounded-lg w-2/5 md:w-full md:border-r-0 md:border-b-4" 
+                                src={`https://nunciaki.herokuapp.com/files/${ListAnuncio.src}`}></img>
+                                <div className="w-full p-2">
+                                    <div className="w-full p-3 flex place-content-between sm:p-0 ">
+                                        <div className="flex w-full flex-wrap">
+                                            <h1 className="font-bold text-lg w-1/2 sm:w-full sm:text-base sm:mb-2">{ListAnuncio.titulo}</h1>
+                                            <div className="flex w-1/2 sm:w-full justify-end sm:justify-start">
+                                                <h2 className="sm:text-sm pt-0.5">Categoria: 
+                                                </h2>
+                                                <h5 className="font-bold ml-1">{ListAnuncio.categoria}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="break-all p-3" style={{height: "50%"}}>
-                                        {ListAnuncio.descricao}
+                                    <div className="break-all p-3 sm:p-0 sm:mb-3">
+                                        <h2 className="sm:text-sm pt-0.5">Descrição</h2>
+                                        <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.descricao}</h5>
                                     </div>
-                                    <div className="flex px-2 place-content-between items-end" style={{height: "25%"}}>
-                                        <div className="flex">
-                                            <h2  className='font-bold'>Data inicial:</h2>
-                                            <h5>{ListAnuncio.data_inicial}</h5>
+                                    <div className="flex flex-wrap px-2 place-content-between items-end" style={{height: "25%"}}>
+                                        <div className="flex sm:w-full">
+                                            <h2  className="sm:text-base">Data inicial:</h2>
+                                            <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_inicial}</h5>
                                         </div>
-                                        <div className="flex">
-                                            <h2  className='font-bold'>Data final:</h2>
-                                            <h5>{ListAnuncio.data_final}</h5>
+                                        <div className="flex sm:w-full">
+                                            <h2  className='sm:text-base'>Data final:</h2>
+                                            <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_final}</h5>
                                         </div>
                                     </div>
                                 </div>
