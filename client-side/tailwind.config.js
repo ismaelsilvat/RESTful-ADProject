@@ -8,6 +8,7 @@ module.exports = {
       '220px': '220px',
       '250px': '250px',
       '300px': '300px',
+      'auto': 'auto !important'
     },
     bg:{
       'oi': '#E62103'

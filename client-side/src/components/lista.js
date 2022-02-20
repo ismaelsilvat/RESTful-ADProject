@@ -57,22 +57,22 @@ function Lista(){
                 {ListAnuncios.map((ListAnuncio, i) =>{   
                     function Structure(){
                         return(
-                            <div className="flex w-3/4 h-250px rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12 md:flex-col md:w-3/4 sm:w-11/12" key={ListAnuncio.idanuncio}>
+                            <div className="flex w-3/4 h-250px rounded-lg m-auto  my-5 shadow-lg bg-white border-2 border-[#d2d2d2] lg:w-11/12 md:flex-col md:w-3/4 sm:w-11/12 lg:h-auto" key={ListAnuncio.idanuncio}>
                                 <div className="border-r-4 border-[#2E377B] rounded-lg w-2/5 md:w-full md:border-r-0 md:border-b-4 flex justify-center items-center">
                                     <img className="max-w-full max-h-full object-fill" src={`https://nunciaki.herokuapp.com/files/${ListAnuncio.src}`}></img>
                                 </div>
                                 <div className="w-full p-2 flex flex-col">
-                                    <div className="w-full p-3 flex place-content-between sm:p-0" style={{"height": "25%"}}>
+                                    <div className="w-full flex place-content-between sm:p-0" style={{"height": "25%"}}>
                                         <div className="flex w-full flex-wrap">
-                                            <h1 className="font-bold text-lg w-1/2 sm:w-full sm:text-base sm:mb-5">{ListAnuncio.titulo}</h1>
-                                            <div className="flex w-1/2 sm:w-full justify-end sm:justify-start">
-                                                <h2 className="sm:text-sm pt-0.5">Categoria: 
+                                            <h1 className="font-bold text-lg w-full sm:w-full sm:text-base sm:mb-5">{ListAnuncio.titulo}</h1>
+                                            <div className="flex w-full justify-end sm:justify-start">
+                                                <h2 className="sm:text-sm">Categoria: 
                                                 </h2>
                                                 <h5 className="font-bold ml-1">{ListAnuncio.categoria}</h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="break-all p-3 sm:p-0 sm:my-5" style={{"height": "50%"}}>
+                                    <div className="break-all p-3 sm:p-0 my-5" style={{"height": "50%"}}>
                                         <h2 className="sm:text-sm pt-0.5 h-1/4">Descrição</h2>
                                         <h5 className="font-bold sm:text-base">{ListAnuncio.descricao}</h5>
                                     </div>
@@ -81,7 +81,7 @@ function Lista(){
                                             <h2  className="sm:text-base">Data inicial:</h2>
                                             <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_inicial}</h5>
                                         </div>
-                                        <div className="flex w-1/2 sm:w-full">
+                                        <div className="flex w-1/2 sm:w-full justify-end sm:justify-start">
                                             <h2  className='sm:text-base'>Data final:</h2>
                                             <h5 className="font-bold ml-1 sm:text-base">{ListAnuncio.data_final}</h5>
                                         </div>
